@@ -22,7 +22,9 @@ public class ClienteRepository {
     private static List<Cliente> clientes;
     
     public ClienteRepository(){
-        
+        if(clientes == null){
+             clientes = new ArrayList<>();
+        }
     }
     
     public void save(Cliente cliente) throws NotFoundException{
@@ -31,10 +33,6 @@ public class ClienteRepository {
          }
          
          cliente.setCreatedAt(new Timestamp(new Date().getTime()));
-         
-         if(clientes == null){
-             clientes = new ArrayList<>();
-         }
          
          System.out.println("teste: "+clientes.size());
          

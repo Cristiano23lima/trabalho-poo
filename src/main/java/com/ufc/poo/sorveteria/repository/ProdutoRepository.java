@@ -9,6 +9,7 @@ import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.model.Produto;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,9 +19,13 @@ import java.util.stream.Collectors;
  * @author cristiano
  */
 public class ProdutoRepository {
-    private List<Produto> produtos;
+    private static List<Produto> produtos;
     
-    public ProdutoRepository(){}
+    public ProdutoRepository(){
+        if(produtos == null){
+            produtos = new ArrayList<>();        
+        }
+    }
     
     public void save(Produto produto) throws NotFoundException{
          if(produto == null){
