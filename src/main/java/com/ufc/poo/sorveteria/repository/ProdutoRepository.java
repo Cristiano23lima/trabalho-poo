@@ -54,6 +54,10 @@ public class ProdutoRepository {
             produtoEdit.setPreco(produto.getPreco());
         }
         
+        if (produto.getQuantidadeDisponivel() != null) {
+            produtoEdit.setQuantidadeDisponivel(produto.getQuantidadeDisponivel());
+        }        
+        
         produtoEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(produtoEdit.getId());//vai remover o valor antigo do array
         
