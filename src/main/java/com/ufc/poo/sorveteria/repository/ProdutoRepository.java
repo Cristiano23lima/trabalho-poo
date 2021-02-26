@@ -7,7 +7,7 @@ package com.ufc.poo.sorveteria.repository;
 
 import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.model.Produto;
-import exceptions.NotFoundException;
+import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;

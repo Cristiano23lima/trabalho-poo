@@ -7,20 +7,21 @@ package com.ufc.poo.sorveteria.services;
 
 import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.repository.ClienteRepository;
-import exceptions.NotFoundException;
+import com.ufc.poo.sorveteria.exceptions.NotFoundException;
+import java.util.NoSuchElementException;
 
 /**
  *
  * @author cristiano
  */
-public class ClienteService {
-    final private ClienteRepository clienteRepository;
+public class ClienteService {    
+    private ClienteRepository clienteRepository;
     
-    public ClienteService(ClienteRepository clienteRepository){
-        this.clienteRepository = clienteRepository;
+    public ClienteService(){
+        clienteRepository = new ClienteRepository();
     }
     
-    public Cliente cadastrar(Cliente cliente) throws NotFoundException{
+    public Cliente cadastrar(Cliente cliente) throws NotFoundException{        
         try{
             clienteRepository.save(cliente);
             System.out.println("Cliente salvo com sucesso.\n");
@@ -32,7 +33,7 @@ public class ClienteService {
     
     public void remover(Integer id) throws NotFoundException{
         try{
-             this.clienteRepository.remove(id);
+             clienteRepository.remove(id);
              System.out.println("Cliente removido com sucesso.\n");
         }catch(NotFoundException e){
             throw new NotFoundException(e.getMessage());
@@ -41,7 +42,7 @@ public class ClienteService {
     
     public Cliente editar(Cliente cliente) throws NotFoundException{
         try{
-            this.clienteRepository.edit(cliente);
+            clienteRepository.edit(cliente);
             System.out.println("Cliente editado com sucesso.\n");
             return cliente;
         }catch(NotFoundException e){
@@ -50,7 +51,11 @@ public class ClienteService {
     }
     
     public Cliente buscar(Integer id){
-        return this.clienteRepository.findById(id);
+        try{
+            return clienteRepository.findById(id);
+        }catch(NoSuchElementException e){
+            throw new NoSuchElementException("Nenhum cliente encontrado com o id '"+id+"'");
+        }
     }
         
 }

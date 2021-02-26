@@ -5,7 +5,7 @@
  */
 package com.ufc.poo.sorveteria.model;
 
-import exceptions.NotFoundException;
+import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.sql.Timestamp;
 
 /**

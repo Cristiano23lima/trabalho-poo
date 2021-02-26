@@ -6,8 +6,9 @@
 package com.ufc.poo.sorveteria.repository;
 
 import com.ufc.poo.sorveteria.model.Cliente;
-import exceptions.NotFoundException;
+import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,11 +16,14 @@ import java.util.stream.Collectors;
 /**
  *
  * @author cristiano
+ * Simulando um banco de dados
  */
 public class ClienteRepository {
-    private List<Cliente> clientes;
+    private static List<Cliente> clientes;
     
-    public ClienteRepository(){}
+    public ClienteRepository(){
+        
+    }
     
     public void save(Cliente cliente) throws NotFoundException{
          if(cliente == null){
@@ -27,6 +31,12 @@ public class ClienteRepository {
          }
          
          cliente.setCreatedAt(new Timestamp(new Date().getTime()));
+         
+         if(clientes == null){
+             clientes = new ArrayList<>();
+         }
+         
+         System.out.println("teste: "+clientes.size());
          
          clientes.add(cliente);
     }
