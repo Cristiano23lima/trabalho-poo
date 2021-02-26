@@ -1,0 +1,6 @@
+com/ufc/poo/sorveteria/model/Cliente.class
+com/ufc/poo/sorveteria/model/enums/Tipo.class
+com/ufc/poo/sorveteria/model/Pedido.class
+com/ufc/poo/sorveteria/model/Produto.class
+com/ufc/poo/sorveteria/model/Venda.class
+exceptions/NotFoundException.class
