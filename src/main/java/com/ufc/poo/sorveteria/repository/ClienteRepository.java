@@ -15,65 +15,64 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author cristiano
- * Simulando um banco de dados
+ * @author cristiano Simulando um banco de dados
  */
 public class ClienteRepository {
     private static List<Cliente> clientes;
-    
-    public ClienteRepository(){
-        if(clientes == null){
-             clientes = new ArrayList<>();
+
+    public ClienteRepository() {
+        if (clientes == null) {
+            clientes = new ArrayList<>();
         }
     }
-    
-    public void save(Cliente cliente) throws NotFoundException{
-         if(cliente == null){
-             throw new NotFoundException("Cliente é nulo");
-         }
-         
-         cliente.setCreatedAt(new Timestamp(new Date().getTime()));
-         
-         System.out.println("teste: "+clientes.size());
-         
-         clientes.add(cliente);
+
+    public void save(Cliente cliente) throws NotFoundException {
+        if (cliente == null) {
+            throw new NotFoundException("Cliente é nulo");
+        }
+
+        cliente.setCreatedAt(new Timestamp(new Date().getTime()));
+
+        System.out.println("teste: " + clientes.size());
+
+        clientes.add(cliente);
     }
-    
-    public Cliente findById(Integer id){
+
+    public Cliente findById(Integer id) {
         return clientes.stream().filter(cliente -> cliente.getId().equals(id)).findFirst().get();
     }
-    
-    public void edit(Cliente cliente) throws NotFoundException{
+
+    public void edit(Cliente cliente) throws NotFoundException {
         Cliente clienteEdit = this.findById(cliente.getId());
-        if(clienteEdit == null){
+        if (clienteEdit == null) {
             throw new NotFoundException("Cliente não encontrado.");
         }
-        
-        if(!cliente.getCpf().isEmpty()){
+
+        if (!cliente.getCpf().isEmpty()) {
             clienteEdit.setCpf(cliente.getCpf());
         }
-        
+
         if (!cliente.getNome().isEmpty()) {
             clienteEdit.setNome(cliente.getNome());
         }
-        
+
         if (!cliente.getTelefone().isEmpty()) {
             clienteEdit.setTelefone(cliente.getTelefone());
         }
-        
+
         clienteEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
-        this.remove(clienteEdit.getId());//vai remover o valor antigo do array
-        
-        clientes.add(clienteEdit);//atualiza o array
+        this.remove(clienteEdit.getId());// vai remover o valor antigo do array
+
+        clientes.add(clienteEdit);// atualiza o array
     }
-    
+
     public void remove(Integer id) throws NotFoundException {
-        if(this.findById(id) == null){
+        if (this.findById(id) == null) {
             throw new NotFoundException("Cliente não encontrado");
         }
-        
-        clientes = clientes.stream().filter(clienteSalvo -> !clienteSalvo.getId().equals(id)).collect(Collectors.toList());
+
+        clientes = clientes.stream().filter(clienteSalvo -> !clienteSalvo.getId().equals(id))
+                .collect(Collectors.toList());
     }
-    
-    
+
 }

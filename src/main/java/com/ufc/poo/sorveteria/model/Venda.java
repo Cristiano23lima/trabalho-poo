@@ -103,19 +103,21 @@ public class Venda {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
-    
-    public Double calcularValorTotalCompra(List<Pedido> pedidos){
-        if(pedidos.isEmpty()){
+
+    public Double calcularValorTotalCompra(List<Pedido> pedidos) {
+        if (pedidos.isEmpty()) {
             return 0.0;
         }
         Double valorTotalVenda = 0.0;
-        for(Pedido pedido: pedidos){
+        for (Pedido pedido : pedidos) {
             valorTotalVenda += pedido.getValorTotal();
-        }        
-        
+        }
+
         return valorTotalVenda;
-        
+
     }
-        
+
+	public void add(Venda vendasEdit) {
+	}
+
 }

@@ -20,18 +20,18 @@ public class SorveteriaApplication {
         Cliente cli = new Cliente();
         cli.setId(1);
         cli.setNome("Cristiano");
-        cli.setCpf("123435235234");
+        cli.setCpf("12343523523");
         cli.setTelefone("888888888");
-        
+
         ClienteService servs = new ClienteService();
-        
-        try{
+
+        try {
             servs.cadastrar(cli);
-        
+
             System.out.println(servs.buscar(1).getCpf());
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        
+
     }
 }

@@ -105,7 +105,7 @@ public class Produto {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
+
     /**
      * @return the quantidadeDisponivel
      */
@@ -119,19 +119,25 @@ public class Produto {
     public void setQuantidadeDisponivel(Integer quantidadeDisponivel) {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
-    
+
     /*
-    * @param quantidade essa parametro será usado para decrementar a quantidade disponivel desse produto em estoque
-    */
-    public void decrementarQuantidade(Integer quantidade){
+     * @param quantidade essa parametro será usado para decrementar a quantidade
+     * disponivel desse produto em estoque
+     */
+    public void decrementarQuantidade(Integer quantidade) {
         this.setQuantidadeDisponivel((Integer) (this.getQuantidadeDisponivel() - quantidade));
     }
-     
+
     /*
-    * @param quantidade essa parametro será usado para incrementar a quantidade disponivel desse produto em estoque
-    */
-    public void incrementarQuantidade(Integer quantidade){
+     * @param quantidade essa parametro será usado para incrementar a quantidade
+     * disponivel desse produto em estoque
+     */
+    public void incrementarQuantidade(Integer quantidade) {
         this.setQuantidadeDisponivel((Integer) (this.getQuantidadeDisponivel() + quantidade));
     }
-    
+
+	public boolean isEmpty() {
+		return false;
+	}
+
 }

@@ -14,14 +14,13 @@ import java.sql.Timestamp;
  */
 public class Pedido {
 
-    
     private Integer id;
     private Produto produto;
     private Integer quantidadeDesejada;
     private Double valorTotal;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    
+
     /**
      * @return the id
      */
@@ -105,15 +104,20 @@ public class Pedido {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
+
     /**
-     * Faz o calculo do valor total do produto, podendo ser colocado taxas ou coisas parecidas
+     * Faz o calculo do valor total do produto, podendo ser colocado taxas ou coisas
+     * parecidas
      */
-    private Double calcularValorTotal(Integer quantidadeDesejada) throws NotFoundException{
-        if(this.getProduto() == null){
+    private Double calcularValorTotal(Integer quantidadeDesejada) throws NotFoundException {
+        if (this.getProduto() == null) {
             throw new NotFoundException("Campo produto vazio.");
         }
 
         return this.getProduto().getPreco() * quantidadeDesejada;
+    }
+
+    public void add(Pedido pedidosEdit) {
+
     }
 }
