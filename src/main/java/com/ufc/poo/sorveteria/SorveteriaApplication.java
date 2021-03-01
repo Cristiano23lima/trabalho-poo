@@ -42,6 +42,7 @@ public class SorveteriaApplication {
         ped.setProduto(acai);
         ped.setQuantidadeDesejada(100);
         // ped.setValorTotal(calcularValorTotal());
+        // teste
 
         PedidoService servvs = new PedidoService();
 
