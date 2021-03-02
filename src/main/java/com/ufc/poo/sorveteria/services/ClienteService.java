@@ -19,9 +19,7 @@ import javax.management.BadAttributeValueExpException;
 public class ClienteService {    
     private ClienteRepository clienteRepository;
     
-    public ClienteService(){
-        clienteRepository = new ClienteRepository();
-    }
+    public ClienteService(){}
     
     public Cliente cadastrar(Cliente cliente) throws NotFoundException, BadAttributeValueExpException{        
         try{

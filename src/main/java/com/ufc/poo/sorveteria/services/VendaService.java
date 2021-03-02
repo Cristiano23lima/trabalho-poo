@@ -20,9 +20,7 @@ import javax.management.BadAttributeValueExpException;
 public class VendaService {
     private VendasRepository vendaRepository;
 
-    public VendaService() {
-        vendaRepository = new VendasRepository();
-    }
+    public VendaService() {}
 
     public Venda cadastrar(Venda venda) throws NotFoundException, BadAttributeValueExpException {
         try {

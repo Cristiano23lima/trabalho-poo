@@ -20,9 +20,7 @@ import javax.management.BadAttributeValueExpException;
 public class PedidoService {
     private PedidoRepository pedidoRepository;
 
-    public PedidoService() {
-        pedidoRepository = new PedidoRepository();
-    }
+    public PedidoService() {}
 
     public Pedido cadastrar(Pedido pedido) throws NotFoundException, BadAttributeValueExpException {
         try {
