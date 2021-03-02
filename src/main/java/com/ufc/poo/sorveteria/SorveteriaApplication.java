@@ -6,6 +6,11 @@ import com.ufc.poo.sorveteria.model.Produto;
 import com.ufc.poo.sorveteria.services.ClienteService;
 import com.ufc.poo.sorveteria.services.PedidoService;
 import com.ufc.poo.sorveteria.services.ProdutoService;
+import com.ufc.poo.sorveteria.services.VendaService;
+import com.ufc.poo.sorveteria.services.impl.ClienteServiceImpl;
+import com.ufc.poo.sorveteria.services.impl.PedidoServiceImpl;
+import com.ufc.poo.sorveteria.services.impl.ProdutoServiceImpl;
+import com.ufc.poo.sorveteria.services.impl.VendaServiceImpl;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 
 /*
@@ -20,6 +25,10 @@ import com.ufc.poo.sorveteria.exceptions.NotFoundException;
  */
 public class SorveteriaApplication {
     public static void main(String[] args) throws NotFoundException, Exception {
+        ClienteService clienteService = new ClienteServiceImpl();
+        ProdutoService produtoService = new ProdutoServiceImpl();
+        PedidoService pedidoService = new PedidoServiceImpl();
+        VendaService vendaService = new VendaServiceImpl();
 
         Cliente cli = new Cliente();
         cli.setId(1);
@@ -27,15 +36,17 @@ public class SorveteriaApplication {
         cli.setCpf("12343523523");
         cli.setTelefone("888888888");
 
-        ClienteService clienteService = new ClienteService();
+        Cliente cli2 = new Cliente();
+        cli2.setId(2);
+        cli2.setNome("Cristiano");
+        cli2.setCpf("12343523523");
+        cli2.setTelefone("888888888");
 
         Produto acai = new Produto();
         acai.setId(1);
         acai.setNome("Açai");
         acai.setPreco(2.7); // 100 gramas
         acai.setQuantidadeDisponivel(10000); // gramas
-
-        ProdutoService produtoService = new ProdutoService();
 
         Pedido ped = new Pedido();
         ped.setId(1);
@@ -51,10 +62,9 @@ public class SorveteriaApplication {
         // ped.setValorTotal(calcularValorTotal());
         // teste
 
-        PedidoService pedidoService = new PedidoService();
-
         try {
             clienteService.cadastrar(cli);
+            clienteService.cadastrar(cli2);
             produtoService.cadastrar(acai);
             pedidoService.cadastrar(ped);
             pedidoService.cadastrar(ped2);
@@ -63,7 +73,7 @@ public class SorveteriaApplication {
             System.out.println(produtoService.buscar(1).getNome());
             System.out.println(pedidoService.buscar(2).getValorTotal());
         } catch (Exception e) {
-            throw new Exception(e.getMessage());
+            throw new Exception(e);
         }
 
     }
