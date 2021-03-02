@@ -109,7 +109,7 @@ public class Pedido {
      * Faz o calculo do valor total do produto, podendo ser colocado taxas ou coisas
      * parecidas
      */
-    private Double calcularValorTotal(Integer quantidadeDesejada) throws NotFoundException {
+    public Double calcularValorTotal(Integer quantidadeDesejada) throws NotFoundException {
         if (this.getProduto() == null) {
             throw new NotFoundException("Campo produto vazio.");
         }
