@@ -27,9 +27,13 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     public Cliente cadastrar(Cliente cliente) throws NotFoundException, BadAttributeValueExpException{        
         try{
-            clienteRepository.save(cliente);
-            System.out.println("Cliente salvo com sucesso.\n");
-            return cliente;
+            if(cliente.verificarCliente()){//só salva se o cliente for válido
+                clienteRepository.save(cliente);
+                System.out.println("Cliente salvo com sucesso.\n");
+                return cliente;
+            }else{
+                throw new BadAttributeValueExpException("Cliente possui campos inválidos.");
+            }
         }catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
         } catch ( BadAttributeValueExpException e){
