@@ -10,6 +10,8 @@ import com.ufc.poo.sorveteria.repository.ClienteRepository;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.util.NoSuchElementException;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -21,13 +23,15 @@ public class ClienteService {
         clienteRepository = new ClienteRepository();
     }
     
-    public Cliente cadastrar(Cliente cliente) throws NotFoundException{        
+    public Cliente cadastrar(Cliente cliente) throws NotFoundException, BadAttributeValueExpException{        
         try{
             clienteRepository.save(cliente);
             System.out.println("Cliente salvo com sucesso.\n");
             return cliente;
-        }catch(NotFoundException e){
+        }catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
+        } catch ( BadAttributeValueExpException e){
+            throw new BadAttributeValueExpException(e.getMessage());
         }
     }
     

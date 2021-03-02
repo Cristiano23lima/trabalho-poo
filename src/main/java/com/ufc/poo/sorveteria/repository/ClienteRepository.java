@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano Simulando um banco de dados
@@ -26,9 +28,11 @@ public class ClienteRepository {
         }
     }
 
-    public void save(Cliente cliente) throws NotFoundException {
+    public void save(Cliente cliente) throws NotFoundException, BadAttributeValueExpException {
         if (cliente == null) {
             throw new NotFoundException("Cliente é nulo");
+        }else if(findById(cliente.getId()) != null){
+            throw  new BadAttributeValueExpException("Cliente com esse id '"+cliente.getId()+"' já cadastrado");
         }
 
         cliente.setCreatedAt(new Timestamp(new Date().getTime()));

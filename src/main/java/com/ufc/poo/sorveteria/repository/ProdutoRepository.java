@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -26,9 +28,11 @@ public class ProdutoRepository {
         }
     }
 
-    public void save(Produto produto) throws NotFoundException {
+    public void save(Produto produto) throws NotFoundException, BadAttributeValueExpException {
         if (produto == null) {
             throw new NotFoundException("Produto é nulo");
+        }else if(findById(produto.getId()) != null){
+            throw new BadAttributeValueExpException("Produto com esse id '"+produto.getId()+"' já cadastrado");
         }
 
         produto.setCreatedAt(new Timestamp(new Date().getTime()));

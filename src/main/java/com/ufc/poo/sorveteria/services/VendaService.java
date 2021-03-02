@@ -10,6 +10,8 @@ import com.ufc.poo.sorveteria.repository.VendasRepository;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.util.NoSuchElementException;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -22,13 +24,15 @@ public class VendaService {
         vendaRepository = new VendasRepository();
     }
 
-    public Venda cadastrar(Venda venda) throws NotFoundException {
+    public Venda cadastrar(Venda venda) throws NotFoundException, BadAttributeValueExpException {
         try {
             vendaRepository.save(venda);
             System.out.println("Venda salva com sucesso.\n");
             return venda;
         } catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
+        } catch ( BadAttributeValueExpException e){
+            throw new BadAttributeValueExpException(e.getMessage());
         }
     }
 

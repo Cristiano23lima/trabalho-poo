@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -27,9 +29,11 @@ public class PedidoRepository {
         }
     }
 
-    public void save(Pedido pedido) throws NotFoundException {
+    public void save(Pedido pedido) throws NotFoundException, BadAttributeValueExpException {
         if (pedido == null) {
             throw new NotFoundException("Pedido é nulo");
+        }else if(findById(pedido.getId()) != null){
+            throw new BadAttributeValueExpException("Já existe um pedido com esse ID '"+pedido.getId()+"'");
         }
 
         pedido.setCreatedAt(new Timestamp(new Date().getTime()));

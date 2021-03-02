@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano Simulando um banco de dados
@@ -27,14 +29,16 @@ public class VendasRepository {
         }
     }
 
-    public void save(Venda vendas) throws NotFoundException {
-        if (vendas == null) {
+    public void save(Venda venda) throws NotFoundException, BadAttributeValueExpException {
+        if (venda == null) {
             throw new NotFoundException("Venda é nula");
+        }else if(findById(venda.getId()) != null){
+            throw new BadAttributeValueExpException("Venda com esse ID '"+venda.getId()+"' já cadastrada");
         }
 
-        vendas.setCreatedAt(new Timestamp(new Date().getTime()));
+        venda.setCreatedAt(new Timestamp(new Date().getTime()));
 
-        vendas.add(vendas);
+        vendas.add(venda);
     }
 
     public Venda findById(Integer id) {

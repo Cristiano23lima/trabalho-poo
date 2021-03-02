@@ -42,6 +42,12 @@ public class SorveteriaApplication {
         ped.setProduto(acai);
         ped.setQuantidadeDesejada(100);
         ped.setValorTotal(700.0);
+
+        Pedido ped2 = new Pedido();
+        ped2.setId(2);
+        ped2.setProduto(acai);
+        ped2.setQuantidadeDesejada(100);
+        ped2.setValorTotal(700.0);
         // ped.setValorTotal(calcularValorTotal());
         // teste
 
@@ -51,10 +57,11 @@ public class SorveteriaApplication {
             clienteService.cadastrar(cli);
             produtoService.cadastrar(acai);
             pedidoService.cadastrar(ped);
+            pedidoService.cadastrar(ped2);
 
             System.out.println(clienteService.buscar(1).getCpf());
             System.out.println(produtoService.buscar(1).getNome());
-            System.out.println(pedidoService.buscar(1).getValorTotal());
+            System.out.println(pedidoService.buscar(2).getValorTotal());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
