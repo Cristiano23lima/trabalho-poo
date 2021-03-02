@@ -27,18 +27,18 @@ public class PedidoRepository {
         }
     }
 
-    public void save(Pedido pedidos) throws NotFoundException {
-        if (pedidos == null) {
+    public void save(Pedido pedido) throws NotFoundException {
+        if (pedido == null) {
             throw new NotFoundException("Pedido é nulo");
         }
 
-        pedidos.setCreatedAt(new Timestamp(new Date().getTime()));
+        pedido.setCreatedAt(new Timestamp(new Date().getTime()));
 
-        pedidos.add(pedidos);
+        pedidos.add(pedido);
     }
 
     public Pedido findById(Integer id) {
-        return pedidos.stream().filter(pedidos -> pedidos.getId().equals(id)).findFirst().get();
+        return pedidos.stream().filter(pedido -> pedido.getId().equals(id)).findFirst().get();
     }
 
     public void edit(Pedido pedidos) throws NotFoundException {

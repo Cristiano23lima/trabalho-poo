@@ -27,7 +27,7 @@ public class SorveteriaApplication {
         cli.setCpf("12343523523");
         cli.setTelefone("888888888");
 
-        ClienteService servs = new ClienteService();
+        ClienteService clienteService = new ClienteService();
 
         Produto acai = new Produto();
         acai.setId(1);
@@ -35,25 +35,26 @@ public class SorveteriaApplication {
         acai.setPreco(2.7); // 100 gramas
         acai.setQuantidadeDisponivel(10000); // gramas
 
-        ProdutoService servss = new ProdutoService();
+        ProdutoService produtoService = new ProdutoService();
 
         Pedido ped = new Pedido();
         ped.setId(1);
         ped.setProduto(acai);
         ped.setQuantidadeDesejada(100);
+        ped.setValorTotal(700.0);
         // ped.setValorTotal(calcularValorTotal());
         // teste
 
-        PedidoService servvs = new PedidoService();
+        PedidoService pedidoService = new PedidoService();
 
         try {
-            servs.cadastrar(cli);
-            servss.cadastrar(acai);
-            servvs.cadastrar(ped);
+            clienteService.cadastrar(cli);
+            produtoService.cadastrar(acai);
+            pedidoService.cadastrar(ped);
 
-            System.out.println(servs.buscar(1).getCpf());
-            System.out.println(servss.buscar(1).getNome());
-            System.out.println(servvs.buscar(1).getValorTotal());
+            System.out.println(clienteService.buscar(1).getCpf());
+            System.out.println(produtoService.buscar(1).getNome());
+            System.out.println(pedidoService.buscar(1).getValorTotal());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
