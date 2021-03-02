@@ -40,7 +40,7 @@ public class SorveteriaApplication {
         cli2.setId(2);
         cli2.setNome("Cristiano");
         cli2.setCpf("12343523523");
-        cli2.setTelefone("888888888");
+        cli2.setTelefone("88888888");
 
         Produto acai = new Produto();
         acai.setId(1);
