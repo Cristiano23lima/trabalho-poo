@@ -12,16 +12,12 @@ import javax.management.BadAttributeValueExpException;
  *
  * @author cristiano
  */
-public class Cliente {
+public class Cliente extends Pessoa {
 
-    
     private Integer id;
-    private String nome;
-    private String cpf;
-    private String telefone;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    
+
     /**
      * @return the id
      */
@@ -34,48 +30,6 @@ public class Cliente {
      */
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     * @return the cpf
-     */
-    public String getCpf() {
-        return cpf;
-    }
-
-    /**
-     * @param cpf the cpf to set
-     */
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    /**
-     * @return the telefone
-     */
-    public String getTelefone() {
-        return telefone;
-    }
-
-    /**
-     * @param telefone the telefone to set
-     */
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     /**
@@ -105,32 +59,32 @@ public class Cliente {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
+
     /**
      * Validar o cpf do cliente, verificando se ele é valido
      */
-    private Boolean validarCpf(){
-        if(!this.cpf.isBlank() && !this.cpf.isEmpty()){
+    private Boolean validarCpf() {
+        if (!this.cpf.isBlank() && !this.cpf.isEmpty()) {
             return true;
         }
-        
-        if (true) {//aqui tem que fazer a verificação de que o calculo do cpf é ok
-        
+
+        if (true) {// aqui tem que fazer a verificação de que o calculo do cpf é ok
+
         }
-        
+
         return false;
     }
-    
+
     public Boolean verificarCliente() throws BadAttributeValueExpException {
-        if(nome.isBlank() || nome.isEmpty()){
+        if (nome.isBlank() || nome.isEmpty()) {
             throw new BadAttributeValueExpException("Campo nome é obrigátorio");
         }
-        
-        if(!validarCpf()){
+
+        if (!validarCpf()) {
             throw new BadAttributeValueExpException("Campo CPF vazio ou inválido");
         }
-        
+
         return true;
     }
-        
+
 }
