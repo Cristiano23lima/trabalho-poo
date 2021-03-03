@@ -52,13 +52,11 @@ public class SorveteriaApplication {
         ped.setId(1);
         ped.setProduto(acai);
         ped.setQuantidadeDesejada(100);
-        ped.setValorTotal(700.0);
 
         Pedido ped2 = new Pedido();
         ped2.setId(2);
         ped2.setProduto(acai);
         ped2.setQuantidadeDesejada(100);
-        ped2.setValorTotal(ped2.calcularValorTotal(100));
         // teste
 
         try {

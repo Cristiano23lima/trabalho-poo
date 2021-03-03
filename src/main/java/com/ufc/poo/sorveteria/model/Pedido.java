@@ -59,8 +59,9 @@ public class Pedido {
     /**
      * @param quantidadeDesejada the quantidadeDesejada to set
      */
-    public void setQuantidadeDesejada(Integer quantidadeDesejada) {
+    public void setQuantidadeDesejada(Integer quantidadeDesejada) throws NotFoundException {
         this.quantidadeDesejada = quantidadeDesejada;
+        this.valorTotal = this.calcularValorTotal();
     }
 
     /**
@@ -68,13 +69,6 @@ public class Pedido {
      */
     public Double getValorTotal() {
         return valorTotal;
-    }
-
-    /**
-     * @param valorTotal the valorTotal to set
-     */
-    public void setValorTotal(Double valorTotal) {
-        this.valorTotal = valorTotal;
     }
 
     /**
@@ -109,15 +103,11 @@ public class Pedido {
      * Faz o calculo do valor total do produto, podendo ser colocado taxas ou coisas
      * parecidas
      */
-    public Double calcularValorTotal(Integer quantidadeDesejada) throws NotFoundException {
+    private Double calcularValorTotal() throws NotFoundException {
         if (this.getProduto() == null) {
             throw new NotFoundException("Campo produto vazio.");
         }
 
-        return this.getProduto().getPreco() * quantidadeDesejada;
-    }
-
-    public void add(Pedido pedidosEdit) {
-
+        return this.getProduto().getPreco() * this.quantidadeDesejada;
     }
 }
