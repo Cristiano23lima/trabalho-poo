@@ -36,6 +36,8 @@ public class ClienteRepository {
             throw  new BadAttributeValueExpException("Cliente com esse id '"+cliente.getId()+"' já cadastrado");
         }
 
+        cliente.verificarCliente();//caso o cliente esteja ok ele segue adiante, se não ele joga uma excessão
+
         cliente.setCreatedAt(new Timestamp(new Date().getTime()));
 
         clientes.add(cliente);
@@ -55,10 +57,14 @@ public class ClienteRepository {
     }
 
     
-    public void edit(Cliente cliente) throws NotFoundException {
+    public void edit(Cliente cliente) throws NotFoundException, BadAttributeValueExpException {
         Cliente clienteEdit = this.findById(cliente.getId());
         if (clienteEdit == null) {
             throw new NotFoundException("Cliente não encontrado.");
+        }
+
+        if(!cliente.verificarCliente()){
+            throw new BadAttributeValueExpException("Cliente possui campos inválidos.");
         }
 
         if (!cliente.getCpf().isEmpty()) {

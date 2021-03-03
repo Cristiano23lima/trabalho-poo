@@ -63,6 +63,7 @@ public class SorveteriaApplication {
 
         try {
             clienteService.cadastrar(cli);
+            clienteService.cadastrar(null);
             clienteService.cadastrar(cli2);
             produtoService.cadastrar(acai);
             pedidoService.cadastrar(ped);

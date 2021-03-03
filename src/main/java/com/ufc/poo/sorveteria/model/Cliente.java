@@ -62,17 +62,6 @@ public class Cliente extends Pessoa {
         this.updatedAt = updatedAt;
     }
 
-    /**
-     * Validar o cpf do cliente, verificando se ele é valido
-     */
-    private Boolean validarCpf() {
-        if (!this.cpf.isBlank() && !this.cpf.isEmpty() && !isCPF(this.cpf)) {
-            return true;
-        }
-
-        return false;
-    }
-
     public Boolean verificarCliente() throws BadAttributeValueExpException {
         if (nome.isBlank() || nome.isEmpty()) {
             throw new BadAttributeValueExpException("Campo nome é obrigátorio");
@@ -83,6 +72,17 @@ public class Cliente extends Pessoa {
         }
 
         return true;
+    }
+
+     /**
+     * Validar o cpf do cliente, verificando se ele é valido
+     */
+    private Boolean validarCpf() {
+        if (!this.cpf.isBlank() && !this.cpf.isEmpty() && isCPF(this.cpf)) {//verifica se o cpf está preenchido e se é válido
+            return true;
+        }
+
+        return false;
     }
 
     private boolean isCPF(String CPF) {
