@@ -57,7 +57,15 @@ public class PedidoServiceImpl implements PedidoService{
     }
 
     @Override
-    public Pedido editar(Pedido pedido) throws NotFoundException {
+    public Pedido editar(Pedido pedido) throws NotFoundException, BadAttributeValueExpException {
+        if(pedido.getProduto() == null){
+            throw new BadAttributeValueExpException("Por favor, adicione um produto para esse pedido.");
+        }
+
+        if(pedido.getProduto().getQuantidadeDisponivel() - pedido.getQuantidadeDesejada() < 0){
+            throw new BadAttributeValueExpException("Não temos essa quantidade disponível para o produto '"+pedido.getProduto().getNome()+"'. Possuimos apenas "+pedido.getProduto().getQuantidadeDisponivel()+" em estoque.");
+        }
+
         try {
             pedidoRepository.edit(pedido);
             System.out.println("Pedido editado com sucesso.\n");
