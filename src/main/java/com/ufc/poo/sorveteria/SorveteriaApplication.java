@@ -51,7 +51,7 @@ public class SorveteriaApplication {
         Pedido ped = new Pedido();
         ped.setId(1);
         ped.setProduto(acai);
-        ped.setQuantidadeDesejada(100);
+        ped.setQuantidadeDesejada(100000);
 
         Pedido ped2 = new Pedido();
         ped2.setId(2);

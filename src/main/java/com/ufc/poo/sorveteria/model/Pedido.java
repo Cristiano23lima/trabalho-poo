@@ -59,7 +59,7 @@ public class Pedido {
     /**
      * @param quantidadeDesejada the quantidadeDesejada to set
      */
-    public void setQuantidadeDesejada(Integer quantidadeDesejada) throws NotFoundException {
+    public void setQuantidadeDesejada(Integer quantidadeDesejada) {
         this.quantidadeDesejada = quantidadeDesejada;
         this.valorTotal = this.calcularValorTotal();
     }
@@ -103,11 +103,7 @@ public class Pedido {
      * Faz o calculo do valor total do produto, podendo ser colocado taxas ou coisas
      * parecidas
      */
-    private Double calcularValorTotal() throws NotFoundException {
-        if (this.getProduto() == null) {
-            throw new NotFoundException("Campo produto vazio.");
-        }
-
+    private Double calcularValorTotal() {
         return this.getProduto().getPreco() * this.quantidadeDesejada;
     }
 }
