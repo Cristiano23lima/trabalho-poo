@@ -14,7 +14,7 @@ import javax.management.BadAttributeValueExpException;
  *
  * @author cristiano
  */
-public class Pedido {
+public class Pedido extends Cliente {
 
     private Integer id;
     private Produto produto;
@@ -22,6 +22,16 @@ public class Pedido {
     private Double valorTotal;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
 
     /**
      * @return the id
@@ -109,13 +119,19 @@ public class Pedido {
         return this.getProduto().getPreco() * this.quantidadeDesejada;
     }
 
-    public Boolean verificarPedido() throws BadAttributeValueExpException{
-        if(this.produto == null){
+    public Boolean verificarPedido() throws BadAttributeValueExpException {
+        if (this.produto == null) {
             throw new BadAttributeValueExpException("Campo PRODUTO é obrigatório para o pedido.");
-        }else if(this.quantidadeDesejada == null){
+        } else if (this.quantidadeDesejada == null) {
             throw new BadAttributeValueExpException("Campo QUANTIDADE DESEJADA é obrigatório para o pedido.");
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "---- Pedido ---- \nID: " + this.id + "\nProduto: " + this.produto.getNome() + "\nCliente: " + this.nome
+                + "\nPreço Total: " + this.valorTotal + "\n----------------";
     }
 }

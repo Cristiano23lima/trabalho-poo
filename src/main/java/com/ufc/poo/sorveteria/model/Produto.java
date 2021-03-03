@@ -122,18 +122,24 @@ public class Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    public Boolean verificarProduto() throws BadAttributeValueExpException{
-        if(this.nome == null || this.nome.isEmpty() || this.nome.isBlank()){
+    public Boolean verificarProduto() throws BadAttributeValueExpException {
+        if (this.nome == null || this.nome.isEmpty() || this.nome.isBlank()) {
             throw new BadAttributeValueExpException("Campo NOME em produto está inválido");
-        }else if(this.tipo == null){
+        } else if (this.tipo == null) {
             throw new BadAttributeValueExpException("Campo TIPO em produto está inválido");
-        }else if(this.preco == null || this.preco.isNaN()){
+        } else if (this.preco == null || this.preco.isNaN()) {
             throw new BadAttributeValueExpException("Campo PREÇO em produto está inválido.");
-        }else if(this.quantidadeDisponivel == null || this.quantidadeDisponivel < 0){
+        } else if (this.quantidadeDisponivel == null || this.quantidadeDisponivel < 0) {
             throw new BadAttributeValueExpException("Campo QUANTIDADE DISPONÍVEL em produto está inválido.");
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "---- Produto ---- \nID: " + this.id + "\nNome: " + this.nome + "\nPreço: " + this.preco + "\nEstoque: "
+                + this.quantidadeDisponivel + "\n-----------------";
     }
 
 }

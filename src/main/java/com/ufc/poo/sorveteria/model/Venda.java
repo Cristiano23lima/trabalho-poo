@@ -72,7 +72,6 @@ public class Venda {
         return valorTotalVenda;
     }
 
-
     /**
      * @return the createdAt
      */
@@ -101,10 +100,10 @@ public class Venda {
         this.updatedAt = updatedAt;
     }
 
-    public Boolean verificarVenda() throws BadAttributeValueExpException{
-        if(this.pedidos == null || this.pedidos.isEmpty() || this.pedidos.size() <= 0){
+    public Boolean verificarVenda() throws BadAttributeValueExpException {
+        if (this.pedidos == null || this.pedidos.isEmpty() || this.pedidos.size() <= 0) {
             throw new BadAttributeValueExpException("Campo PEDIDOS é obrigátorio para a venda.");
-        }else if(this.cliente == null){
+        } else if (this.cliente == null) {
             throw new BadAttributeValueExpException("Campo CLIENTE é obrigátorio para a venda.");
         }
 
@@ -123,5 +122,4 @@ public class Venda {
         return valorTotalVenda;
 
     }
-
 }

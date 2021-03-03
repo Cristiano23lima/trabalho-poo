@@ -66,6 +66,7 @@ public class SorveteriaApplication {
         ped.setId(1);
         ped.setProduto(acai);
         ped.setQuantidadeDesejada(1000);
+        ped.setNome(cli.getNome());
 
         Pedido ped2 = new Pedido();
         ped2.setId(3);
@@ -81,6 +82,10 @@ public class SorveteriaApplication {
         venda.setCliente(cli);
         venda.setPedidos(peds);
         venda.setId(1);
+
+        System.out.println(cli.toString());
+        System.out.println(acai.toString());
+        System.out.println(ped.toString());
 
         try {
             clienteService.cadastrar(cli);
