@@ -56,27 +56,23 @@ public class PedidoRepository{
     }
 
     
-    public void edit(Pedido pedidos) throws NotFoundException {
-        Pedido pedidosEdit = this.findById(pedidos.getId());
+    public void edit(Pedido pedido) throws NotFoundException {
+        Pedido pedidosEdit = this.findById(pedido.getId());
         if (pedidosEdit == null) {
             throw new NotFoundException("Produto não encontrado.");
         }
 
-        if (!pedidos.getProduto().isEmpty()) {
-            pedidosEdit.setProduto(pedidos.getProduto());
+        if (!pedido.getProduto().isEmpty()) {
+            pedidosEdit.setProduto(pedido.getProduto());
         }
 
-        if (pedidos.getQuantidadeDesejada() != null) {
-            pedidosEdit.setQuantidadeDesejada(pedidos.getQuantidadeDesejada());
-        }
-
-        if (!pedidos.getValorTotal().isNaN()) {
-            pedidosEdit.setValorTotal(pedidos.getValorTotal());
+        if (pedido.getQuantidadeDesejada() != null) {
+            pedidosEdit.setQuantidadeDesejada(pedido.getQuantidadeDesejada());
         }
 
         pedidosEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(pedidosEdit.getId());// vai remover o valor antigo do array
-
+        
         pedidos.add(pedidosEdit);// atualiza o array
     }
 
