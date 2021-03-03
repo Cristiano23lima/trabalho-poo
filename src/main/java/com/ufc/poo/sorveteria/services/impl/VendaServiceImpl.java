@@ -49,13 +49,15 @@ public class VendaServiceImpl implements VendaService{
     }
 
     @Override
-    public Venda editar(Venda venda) throws NotFoundException {
+    public Venda editar(Venda venda) throws NotFoundException, BadAttributeValueExpException {
         try {
             vendaRepository.edit(venda);
             System.out.println("Venda editada com sucesso.\n");
             return venda;
         } catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
+        } catch (BadAttributeValueExpException e){
+            throw new BadAttributeValueExpException(e);
         }
     }
 

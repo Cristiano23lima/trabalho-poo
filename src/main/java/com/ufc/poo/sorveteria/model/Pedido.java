@@ -8,6 +8,8 @@ package com.ufc.poo.sorveteria.model;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.sql.Timestamp;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -105,5 +107,15 @@ public class Pedido {
      */
     private Double calcularValorTotal() {
         return this.getProduto().getPreco() * this.quantidadeDesejada;
+    }
+
+    public Boolean verificarPedido() throws BadAttributeValueExpException{
+        if(this.produto == null){
+            throw new BadAttributeValueExpException("Campo PRODUTO é obrigatório para o pedido.");
+        }else if(this.quantidadeDesejada == null){
+            throw new BadAttributeValueExpException("Campo QUANTIDADE DESEJADA é obrigatório para o pedido.");
+        }
+
+        return true;
     }
 }

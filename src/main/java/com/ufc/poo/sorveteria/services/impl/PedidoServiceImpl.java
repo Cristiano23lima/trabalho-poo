@@ -72,6 +72,8 @@ public class PedidoServiceImpl implements PedidoService{
             return pedido;
         } catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
+        } catch (BadAttributeValueExpException e){
+            throw new BadAttributeValueExpException(e);
         }
     }
 

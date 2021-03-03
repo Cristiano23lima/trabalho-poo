@@ -8,6 +8,8 @@ package com.ufc.poo.sorveteria.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -117,7 +119,14 @@ public class Venda {
 
     }
 
-	public void add(Venda vendasEdit) {
-	}
+    public Boolean verificarVenda() throws BadAttributeValueExpException{
+        if(this.pedidos == null || this.pedidos.isEmpty() || this.pedidos.size() <= 0){
+            throw new BadAttributeValueExpException("Campo PEDIDOS é obrigátorio para a venda.");
+        }else if(this.cliente == null){
+            throw new BadAttributeValueExpException("Campo CLIENTE é obrigátorio para a venda.");
+        }
+
+        return true;
+    }
 
 }

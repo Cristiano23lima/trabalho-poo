@@ -37,6 +37,7 @@ public class VendasRepository{
             throw new BadAttributeValueExpException("Venda com esse ID '"+venda.getId()+"' já cadastrada");
         }
 
+        venda.verificarVenda();
         venda.setCreatedAt(new Timestamp(new Date().getTime()));
 
         vendas.add(venda);
@@ -55,24 +56,17 @@ public class VendasRepository{
     }
 
     
-    public void edit(Venda vendas) throws NotFoundException {
-        Venda vendasEdit = this.findById(vendas.getId());
+    public void edit(Venda venda) throws NotFoundException, BadAttributeValueExpException {
+        Venda vendasEdit = this.findById(venda.getId());
         if (vendasEdit == null) {
             throw new NotFoundException("Venda não encontrado.");
         }
 
-        if (!vendas.getPedidos().isEmpty()) {
-            vendasEdit.setPedidos(vendas.getPedidos());
-        }
+        venda.verificarVenda();
 
-        if (vendas.getCliente() != null) {
-            vendasEdit.setCliente(vendas.getCliente());
-        }
-
-        if (!vendas.getValorTotalVenda().isNaN()) {
-            vendasEdit.setValorTotalVenda(vendas.getValorTotalVenda());
-        }
-
+        vendasEdit.setPedidos(venda.getPedidos());
+        vendasEdit.setCliente(venda.getCliente());
+        vendasEdit.setValorTotalVenda(venda.getValorTotalVenda());
         vendasEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(vendasEdit.getId());// vai remover o valor antigo do array
 

@@ -64,22 +64,11 @@ public class ProdutoRepository{
 
         produto.verificarProduto();
 
-        if (!produto.getNome().isEmpty()) {
-            produtoEdit.setNome(produto.getNome());
-        }
-
-        if (produto.getTipo() != null) {
-            produtoEdit.setTipo(produto.getTipo());
-        }
-
-        if (!produto.getPreco().isNaN()) {
-            produtoEdit.setPreco(produto.getPreco());
-        }
-
-        if (produto.getQuantidadeDisponivel() != null) {
-            produtoEdit.setQuantidadeDisponivel(produto.getQuantidadeDisponivel());
-        }
-
+        produtoEdit.setNome(produto.getNome());
+        produtoEdit.setTipo(produto.getTipo());
+        produtoEdit.setPreco(produto.getPreco());
+        produtoEdit.setQuantidadeDisponivel(produto.getQuantidadeDisponivel());
+        
         produtoEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(produtoEdit.getId());// vai remover o valor antigo do array
 

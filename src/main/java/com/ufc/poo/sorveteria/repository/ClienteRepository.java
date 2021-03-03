@@ -65,18 +65,10 @@ public class ClienteRepository {
 
         cliente.verificarCliente();
 
-        if (!cliente.getCpf().isEmpty()) {
-            clienteEdit.setCpf(cliente.getCpf());
-        }
-
-        if (!cliente.getNome().isEmpty()) {
-            clienteEdit.setNome(cliente.getNome());
-        }
-
-        if (!cliente.getTelefone().isEmpty()) {
-            clienteEdit.setTelefone(cliente.getTelefone());
-        }
-
+        clienteEdit.setCpf(cliente.getCpf());
+        clienteEdit.setNome(cliente.getNome());
+        clienteEdit.setTelefone(cliente.getTelefone());
+        
         clienteEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(clienteEdit.getId());// vai remover o valor antigo do array
 

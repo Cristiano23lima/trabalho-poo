@@ -37,6 +37,7 @@ public class PedidoRepository{
             throw new BadAttributeValueExpException("Já existe um pedido com esse ID '"+pedido.getId()+"'");
         }
 
+        pedido.verificarPedido();
         pedido.setCreatedAt(new Timestamp(new Date().getTime()));
 
         pedidos.add(pedido);
@@ -56,19 +57,17 @@ public class PedidoRepository{
     }
 
     
-    public void edit(Pedido pedido) throws NotFoundException {
+    public void edit(Pedido pedido) throws NotFoundException, BadAttributeValueExpException {
         Pedido pedidosEdit = this.findById(pedido.getId());
         if (pedidosEdit == null) {
             throw new NotFoundException("Produto não encontrado.");
         }
 
-        if (pedido.getProduto() != null) {
-            pedidosEdit.setProduto(pedido.getProduto());
-        }
+        pedido.verificarPedido();
 
-        if (pedido.getQuantidadeDesejada() != null) {
-            pedidosEdit.setQuantidadeDesejada(pedido.getQuantidadeDesejada());
-        }
+        pedidosEdit.setQuantidadeDesejada(pedido.getQuantidadeDesejada());
+        pedidosEdit.setProduto(pedido.getProduto());
+        
 
         pedidosEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(pedidosEdit.getId());// vai remover o valor antigo do array
