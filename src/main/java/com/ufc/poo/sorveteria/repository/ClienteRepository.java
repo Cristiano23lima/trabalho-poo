@@ -63,9 +63,7 @@ public class ClienteRepository {
             throw new NotFoundException("Cliente não encontrado.");
         }
 
-        if(!cliente.verificarCliente()){
-            throw new BadAttributeValueExpException("Cliente possui campos inválidos.");
-        }
+        cliente.verificarCliente();
 
         if (!cliente.getCpf().isEmpty()) {
             clienteEdit.setCpf(cliente.getCpf());

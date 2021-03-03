@@ -3,6 +3,7 @@ package com.ufc.poo.sorveteria;
 import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.model.Pedido;
 import com.ufc.poo.sorveteria.model.Produto;
+import com.ufc.poo.sorveteria.model.enums.Tipo;
 import com.ufc.poo.sorveteria.services.ClienteService;
 import com.ufc.poo.sorveteria.services.PedidoService;
 import com.ufc.poo.sorveteria.services.ProdutoService;
@@ -46,7 +47,8 @@ public class SorveteriaApplication {
         acai.setId(1);
         acai.setNome("Açai");
         acai.setPreco(2.7); // 100 gramas
-        acai.setQuantidadeDisponivel(10000); // gramas
+        acai.setQuantidadeDisponivel(1000); // gramas
+        acai.setTipo(Tipo.ACAI);
 
         Pedido ped = new Pedido();
         ped.setId(1);

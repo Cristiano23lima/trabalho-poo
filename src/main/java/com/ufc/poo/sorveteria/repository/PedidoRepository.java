@@ -62,7 +62,7 @@ public class PedidoRepository{
             throw new NotFoundException("Produto não encontrado.");
         }
 
-        if (!pedido.getProduto().isEmpty()) {
+        if (pedido.getProduto() != null) {
             pedidosEdit.setProduto(pedido.getProduto());
         }
 

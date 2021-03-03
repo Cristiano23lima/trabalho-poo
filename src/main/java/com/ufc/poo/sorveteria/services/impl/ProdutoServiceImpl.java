@@ -34,7 +34,7 @@ public class ProdutoServiceImpl implements ProdutoService{
         } catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
         } catch ( BadAttributeValueExpException e){
-            throw new BadAttributeValueExpException(e.getMessage());
+            throw new BadAttributeValueExpException(e);
         }
     }
 
@@ -49,13 +49,15 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public Produto editar(Produto produto) throws NotFoundException {
+    public Produto editar(Produto produto) throws NotFoundException, BadAttributeValueExpException {
         try {
             produtoRepository.edit(produto);
             System.out.println("Produto editado com sucesso.\n");
             return produto;
         } catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
+        } catch (BadAttributeValueExpException e){
+            throw new BadAttributeValueExpException(e);
         }
     }
 

@@ -36,6 +36,8 @@ public class ProdutoRepository{
             throw new BadAttributeValueExpException("Produto com esse id '"+produto.getId()+"' já cadastrado");
         }
 
+        produto.verificarProduto();
+
         produto.setCreatedAt(new Timestamp(new Date().getTime()));
 
         produtos.add(produto);
@@ -54,11 +56,13 @@ public class ProdutoRepository{
     }
 
     
-    public void edit(Produto produto) throws NotFoundException {
+    public void edit(Produto produto) throws NotFoundException, BadAttributeValueExpException {
         Produto produtoEdit = this.findById(produto.getId());
         if (produtoEdit == null) {
             throw new NotFoundException("Produto não encontrado.");
         }
+
+        produto.verificarProduto();
 
         if (!produto.getNome().isEmpty()) {
             produtoEdit.setNome(produto.getNome());

@@ -10,5 +10,5 @@ package com.ufc.poo.sorveteria.model.enums;
  * @author cristiano
  */
 public enum Tipo {
-    SORVETE, PICOLE, ACAI;
+    SORVETE, PICOLE, ACAI, OUTRO;
 }

@@ -8,6 +8,8 @@ package com.ufc.poo.sorveteria.model;
 import com.ufc.poo.sorveteria.model.enums.Tipo;
 import java.sql.Timestamp;
 
+import javax.management.BadAttributeValueExpException;
+
 /**
  *
  * @author cristiano
@@ -136,8 +138,18 @@ public class Produto {
         this.setQuantidadeDisponivel((Integer) (this.getQuantidadeDisponivel() + quantidade));
     }
 
-	public boolean isEmpty() {
-		return false;
-	}
+    public Boolean verificarProduto() throws BadAttributeValueExpException{
+        if(this.nome == null || this.nome.isEmpty() || this.nome.isBlank()){
+            throw new BadAttributeValueExpException("Campo NOME em produto está inválido");
+        }else if(this.tipo == null){
+            throw new BadAttributeValueExpException("Campo TIPO em produto está inválido");
+        }else if(this.preco == null || this.preco.isNaN()){
+            throw new BadAttributeValueExpException("Campo PREÇO em produto está inválido.");
+        }else if(this.quantidadeDisponivel == null || this.quantidadeDisponivel <= 0){
+            throw new BadAttributeValueExpException("Campo QUANTIDADE DISPONÍVEL em produto está inválido.");
+        }
+
+        return true;
+    }
 
 }
