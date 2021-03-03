@@ -70,8 +70,8 @@ public class ProdutoRepository{
         produtoEdit.setQuantidadeDisponivel(produto.getQuantidadeDisponivel());
         
         produtoEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
+        
         this.remove(produtoEdit.getId());// vai remover o valor antigo do array
-
         produtos.add(produtoEdit);// atualiza o array
     }
 
@@ -80,7 +80,7 @@ public class ProdutoRepository{
         if (this.findById(id) == null) {
             throw new NotFoundException("Cliente não encontrado");
         }
-
+        
         produtos = produtos.stream().filter(produtoSalvo -> !produtoSalvo.getId().equals(id))
                 .collect(Collectors.toList());
     }

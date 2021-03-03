@@ -7,6 +7,7 @@ package com.ufc.poo.sorveteria.services.impl;
 
 import com.ufc.poo.sorveteria.model.Pedido;
 import com.ufc.poo.sorveteria.repository.PedidoRepository;
+import com.ufc.poo.sorveteria.repository.ProdutoRepository;
 import com.ufc.poo.sorveteria.services.PedidoService;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.util.NoSuchElementException;
@@ -20,9 +21,11 @@ import javax.management.BadAttributeValueExpException;
 
 public class PedidoServiceImpl implements PedidoService{
     private static PedidoRepository pedidoRepository;
+    private static ProdutoRepository produtoRepository;
 
     public PedidoServiceImpl() {
         pedidoRepository = new PedidoRepository();
+        produtoRepository = new ProdutoRepository();
     }
 
     @Override
@@ -33,6 +36,10 @@ public class PedidoServiceImpl implements PedidoService{
 
         if(pedido.getProduto().getQuantidadeDisponivel() - pedido.getQuantidadeDesejada() < 0){
             throw new BadAttributeValueExpException("Não temos essa quantidade disponível para o produto '"+pedido.getProduto().getNome()+"'. Possuimos apenas "+pedido.getProduto().getQuantidadeDisponivel()+" em estoque.");
+        }
+
+        if(produtoRepository.findById(pedido.getProduto().getId()) == null){
+            throw new NullPointerException("Produto não existe com ID "+pedido.getProduto().getId());
         }
 
         try {

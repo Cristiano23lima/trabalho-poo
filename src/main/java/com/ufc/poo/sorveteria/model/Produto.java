@@ -122,22 +122,6 @@ public class Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    /*
-     * @param quantidade essa parametro será usado para decrementar a quantidade
-     * disponivel desse produto em estoque
-     */
-    public void decrementarQuantidade(Integer quantidade) {
-        this.setQuantidadeDisponivel((Integer) (this.getQuantidadeDisponivel() - quantidade));
-    }
-
-    /*
-     * @param quantidade essa parametro será usado para incrementar a quantidade
-     * disponivel desse produto em estoque
-     */
-    public void incrementarQuantidade(Integer quantidade) {
-        this.setQuantidadeDisponivel((Integer) (this.getQuantidadeDisponivel() + quantidade));
-    }
-
     public Boolean verificarProduto() throws BadAttributeValueExpException{
         if(this.nome == null || this.nome.isEmpty() || this.nome.isBlank()){
             throw new BadAttributeValueExpException("Campo NOME em produto está inválido");
@@ -145,7 +129,7 @@ public class Produto {
             throw new BadAttributeValueExpException("Campo TIPO em produto está inválido");
         }else if(this.preco == null || this.preco.isNaN()){
             throw new BadAttributeValueExpException("Campo PREÇO em produto está inválido.");
-        }else if(this.quantidadeDisponivel == null || this.quantidadeDisponivel <= 0){
+        }else if(this.quantidadeDisponivel == null || this.quantidadeDisponivel < 0){
             throw new BadAttributeValueExpException("Campo QUANTIDADE DISPONÍVEL em produto está inválido.");
         }
 

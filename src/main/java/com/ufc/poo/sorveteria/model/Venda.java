@@ -48,6 +48,7 @@ public class Venda {
      */
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+        this.valorTotalVenda = this.calcularValorTotalCompra(pedidos);
     }
 
     /**
@@ -71,12 +72,6 @@ public class Venda {
         return valorTotalVenda;
     }
 
-    /**
-     * @param valorTotal the valorTotal to set
-     */
-    public void setValorTotalVenda(Double valorTotalVenda) {
-        this.valorTotalVenda = valorTotalVenda;
-    }
 
     /**
      * @return the createdAt
@@ -106,7 +101,17 @@ public class Venda {
         this.updatedAt = updatedAt;
     }
 
-    public Double calcularValorTotalCompra(List<Pedido> pedidos) {
+    public Boolean verificarVenda() throws BadAttributeValueExpException{
+        if(this.pedidos == null || this.pedidos.isEmpty() || this.pedidos.size() <= 0){
+            throw new BadAttributeValueExpException("Campo PEDIDOS é obrigátorio para a venda.");
+        }else if(this.cliente == null){
+            throw new BadAttributeValueExpException("Campo CLIENTE é obrigátorio para a venda.");
+        }
+
+        return true;
+    }
+
+    private Double calcularValorTotalCompra(List<Pedido> pedidos) {
         if (pedidos.isEmpty()) {
             return 0.0;
         }
@@ -117,16 +122,6 @@ public class Venda {
 
         return valorTotalVenda;
 
-    }
-
-    public Boolean verificarVenda() throws BadAttributeValueExpException{
-        if(this.pedidos == null || this.pedidos.isEmpty() || this.pedidos.size() <= 0){
-            throw new BadAttributeValueExpException("Campo PEDIDOS é obrigátorio para a venda.");
-        }else if(this.cliente == null){
-            throw new BadAttributeValueExpException("Campo CLIENTE é obrigátorio para a venda.");
-        }
-
-        return true;
     }
 
 }

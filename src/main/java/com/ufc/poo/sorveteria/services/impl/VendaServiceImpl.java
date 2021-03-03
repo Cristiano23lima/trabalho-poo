@@ -5,7 +5,10 @@
  */
 package com.ufc.poo.sorveteria.services.impl;
 
+import com.ufc.poo.sorveteria.model.Pedido;
+import com.ufc.poo.sorveteria.model.Produto;
 import com.ufc.poo.sorveteria.model.Venda;
+import com.ufc.poo.sorveteria.repository.ProdutoRepository;
 import com.ufc.poo.sorveteria.repository.VendasRepository;
 import com.ufc.poo.sorveteria.services.VendaService;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
@@ -20,9 +23,11 @@ import javax.management.BadAttributeValueExpException;
 
 public class VendaServiceImpl implements VendaService{
     private VendasRepository vendaRepository;
+    private ProdutoRepository produtoRepository;
 
     public VendaServiceImpl() {
         vendaRepository = new VendasRepository();
+        produtoRepository = new ProdutoRepository();
     }
 
     @Override
@@ -30,11 +35,19 @@ public class VendaServiceImpl implements VendaService{
         try {
             vendaRepository.save(venda);
             System.out.println("Venda salva com sucesso.\n");
+
+            //irei atualizar os dados de todos os produtos vendidos
+            for(Pedido pedidoEfetuado : venda.getPedidos()){
+                Produto produtoVendido = this.produtoRepository.findById(pedidoEfetuado.getProduto().getId());
+                produtoVendido.setQuantidadeDisponivel((produtoVendido.getQuantidadeDisponivel() - pedidoEfetuado.getQuantidadeDesejada())); ;//atualiza a quantidade de produtos
+                produtoRepository.edit(produtoVendido);
+            }
+
             return venda;
         } catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
         } catch ( BadAttributeValueExpException e){
-            throw new BadAttributeValueExpException(e.getMessage());
+            throw new BadAttributeValueExpException(e);
         }
     }
 

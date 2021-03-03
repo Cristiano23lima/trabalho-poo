@@ -3,6 +3,7 @@ package com.ufc.poo.sorveteria;
 import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.model.Pedido;
 import com.ufc.poo.sorveteria.model.Produto;
+import com.ufc.poo.sorveteria.model.Venda;
 import com.ufc.poo.sorveteria.model.enums.Tipo;
 import com.ufc.poo.sorveteria.services.ClienteService;
 import com.ufc.poo.sorveteria.services.PedidoService;
@@ -12,6 +13,10 @@ import com.ufc.poo.sorveteria.services.impl.ClienteServiceImpl;
 import com.ufc.poo.sorveteria.services.impl.PedidoServiceImpl;
 import com.ufc.poo.sorveteria.services.impl.ProdutoServiceImpl;
 import com.ufc.poo.sorveteria.services.impl.VendaServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 
 /*
@@ -50,27 +55,47 @@ public class SorveteriaApplication {
         acai.setQuantidadeDisponivel(1000); // gramas
         acai.setTipo(Tipo.ACAI);
 
+        Produto sorvete = new Produto();
+        sorvete.setId(2);
+        sorvete.setNome("Sorvete de chocolate");
+        sorvete.setPreco(3.7); // 100 gramas
+        sorvete.setQuantidadeDisponivel(1000); // gramas
+        sorvete.setTipo(Tipo.SORVETE);
+
         Pedido ped = new Pedido();
         ped.setId(1);
         ped.setProduto(acai);
-        ped.setQuantidadeDesejada(100000);
+        ped.setQuantidadeDesejada(1000);
 
         Pedido ped2 = new Pedido();
-        ped2.setId(2);
-        ped2.setProduto(acai);
+        ped2.setId(3);
+        ped2.setProduto(sorvete);
         ped2.setQuantidadeDesejada(100);
         // teste
+
+        List<Pedido> peds = new ArrayList<>();
+        peds.add(ped);
+        peds.add(ped2);
+
+        Venda venda = new Venda();
+        venda.setCliente(cli);
+        venda.setPedidos(peds);
+        venda.setId(1);
 
         try {
             clienteService.cadastrar(cli);
             clienteService.editar(cli2);
             produtoService.cadastrar(acai);
+            // produtoService.cadastrar(sorvete);
             pedidoService.cadastrar(ped);
             pedidoService.cadastrar(ped2);
+            vendaService.cadastrar(venda);
 
-            System.out.println(clienteService.buscar(1).getCpf());
-            System.out.println(produtoService.buscar(1).getNome());
-            System.out.println(pedidoService.buscar(2).getValorTotal());
+            // System.out.println(clienteService.buscar(1).getCpf());
+            // System.out.println(produtoService.buscar(1).getNome());
+            // System.out.println(vendaService.buscar(1).getValorTotalVenda());
+            // System.out.println(produtoService.buscar(1).getQuantidadeDisponivel());
+
         } catch (Exception e) {
             throw new Exception(e);
         }

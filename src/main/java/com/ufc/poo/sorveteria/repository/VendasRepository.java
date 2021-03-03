@@ -66,7 +66,6 @@ public class VendasRepository{
 
         vendasEdit.setPedidos(venda.getPedidos());
         vendasEdit.setCliente(venda.getCliente());
-        vendasEdit.setValorTotalVenda(venda.getValorTotalVenda());
         vendasEdit.setUpdatedAt(new Timestamp(new Date().getTime()));
         this.remove(vendasEdit.getId());// vai remover o valor antigo do array
 
