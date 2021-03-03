@@ -33,7 +33,7 @@ public class ClienteServiceImpl implements ClienteService{
         }catch (NotFoundException e) {
             throw new NotFoundException(e.getMessage());
         } catch ( BadAttributeValueExpException e){
-            throw new BadAttributeValueExpException(e.getMessage());
+            throw new BadAttributeValueExpException(e);
         }
     }
     
@@ -48,13 +48,15 @@ public class ClienteServiceImpl implements ClienteService{
     }
     
     @Override
-    public Cliente editar(Cliente cliente) throws NotFoundException{
+    public Cliente editar(Cliente cliente) throws NotFoundException, BadAttributeValueExpException{
         try{
             clienteRepository.edit(cliente);
             System.out.println("Cliente editado com sucesso.\n");
             return cliente;
         }catch(NotFoundException e){
             throw new NotFoundException(e.getMessage());
+        }catch(BadAttributeValueExpException e){
+            throw new BadAttributeValueExpException(e);
         }
     }
     
