@@ -33,13 +33,13 @@ public class SorveteriaApplication {
         Cliente cli = new Cliente();
         cli.setId(1);
         cli.setNome("Cristiano");
-        cli.setCpf("12343523523");
+        cli.setCpf("60161866000");
         cli.setTelefone("888888888");
 
         Cliente cli2 = new Cliente();
-        cli2.setId(2);
+        cli2.setId(1);
         cli2.setNome("Cristiano");
-        cli2.setCpf("12343523523");
+        cli2.setCpf("60161866000");
         cli2.setTelefone("88888888");
 
         Produto acai = new Produto();
@@ -63,8 +63,7 @@ public class SorveteriaApplication {
 
         try {
             clienteService.cadastrar(cli);
-            clienteService.cadastrar(null);
-            clienteService.cadastrar(cli2);
+            clienteService.editar(cli2);
             produtoService.cadastrar(acai);
             pedidoService.cadastrar(ped);
             pedidoService.cadastrar(ped2);

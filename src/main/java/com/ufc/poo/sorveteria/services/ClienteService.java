@@ -8,6 +8,6 @@ import com.ufc.poo.sorveteria.model.Cliente;
 public interface ClienteService {
     Cliente cadastrar(Cliente cliente) throws NotFoundException, BadAttributeValueExpException;
     void remover(Integer id) throws NotFoundException;
-    Cliente editar(Cliente cliente) throws NotFoundException;
+    Cliente editar(Cliente cliente) throws NotFoundException, BadAttributeValueExpException;
     Cliente buscar(Integer id);
 }
