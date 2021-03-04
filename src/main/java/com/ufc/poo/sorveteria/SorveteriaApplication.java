@@ -66,13 +66,13 @@ public class SorveteriaApplication {
         ped.setId(1);
         ped.setProduto(acai);
         ped.setQuantidadeDesejada(1000);
-        ped.setNome(cli.getNome());
+        // ped.setNome(cli.getNome());
 
         Pedido ped2 = new Pedido();
         ped2.setId(3);
         ped2.setProduto(sorvete);
         ped2.setQuantidadeDesejada(100);
-        ped2.setNome(cli.getNome());
+        // ped2.setNome(cli.getNome());
         // teste
 
         List<Pedido> peds = new ArrayList<>();
@@ -89,23 +89,23 @@ public class SorveteriaApplication {
             System.out.println(cli.toString());
 
             clienteService.cadastrar(cli2);
-            System.out.println(cli2.toString());
+            // System.out.println(cli2.toString());
 
             // clienteService.editar(cli2);
             produtoService.cadastrar(acai);
-            System.out.println(acai.toString());
+            // System.out.println(acai.toString());
 
             produtoService.cadastrar(sorvete);
-            System.out.println(sorvete.toString());
+            // System.out.println(sorvete.toString());
 
             pedidoService.cadastrar(ped);
-            System.out.println(ped.toString());
+            // System.out.println(ped.toString());
 
             pedidoService.cadastrar(ped2);
-            System.out.println(ped2.toString());
+            // System.out.println(ped2.toString());
 
             vendaService.cadastrar(venda);
-            System.out.println(venda.toString());
+            // System.out.println(venda.toString());
 
             // System.out.println(clienteService.buscar(1).getCpf());
             // System.out.println(produtoService.buscar(1).getNome());
