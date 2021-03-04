@@ -5,7 +5,6 @@
  */
 package com.ufc.poo.sorveteria.model;
 
-import com.ufc.poo.sorveteria.exceptions.NotFoundException;
 import java.sql.Timestamp;
 
 import javax.management.BadAttributeValueExpException;

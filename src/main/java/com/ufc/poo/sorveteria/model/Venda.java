@@ -120,10 +120,11 @@ public class Venda extends Pedido {
         return true;
     }
 
-    private Double calcularValorTotalCompra(List<Pedido> pedidos) {
+    private Double calcularValorTotalCompra(List<Pedido> pedidos) {//calcula o valor total da venda, somando o total de cada pedido.
         if (pedidos.isEmpty()) {
             return 0.0;
         }
+
         Double valorTotalVenda = 0.0;
         for (Pedido pedido : pedidos) {
             valorTotalVenda += pedido.getValorTotal();
