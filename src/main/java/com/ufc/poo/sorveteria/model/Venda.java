@@ -14,23 +14,13 @@ import javax.management.BadAttributeValueExpException;
  *
  * @author cristiano
  */
-public class Venda extends Pedido {
+public class Venda {
     private Integer id;
     private List<Pedido> pedidos;
     private Cliente cliente;
     private Double valorTotalVenda;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
-    @Override
-    public Produto getProduto() {
-        return super.getProduto();
-    }
-
-    @Override
-    public void setProduto(Produto produto) {
-        super.setProduto(produto);
-    }
 
     /**
      * @return the id
@@ -136,12 +126,14 @@ public class Venda extends Pedido {
     @Override
     public String toString() {
         String mensagemPedidos = "";
-        for (Pedido pedido : this.pedidos){
-            mensagemPedidos += "\tID do Pedido: "+pedido.getId()+"\n\tNome produto: "+pedido.getProduto().getNome() + "\n\tQuantidade Desejada: "+pedido.getQuantidadeDesejada()+"\n\tValor total do Pedido: "+pedido.getValorTotal()+"\n";
+        for (Pedido pedido : this.pedidos) {
+            mensagemPedidos += "\tID do Pedido: " + pedido.getId() + "\n\tNome produto: "
+                    + pedido.getProduto().getNome() + "\n\tQuantidade Desejada: " + pedido.getQuantidadeDesejada()
+                    + "\n\tValor total do Pedido: " + pedido.getValorTotal() + "\n";
             mensagemPedidos += "\t--------------------------------------------\n";
         }
 
-        return "---- Venda ---- \nID: " + this.id + "\nCliente: "+ this.cliente.getNome() + "\nPedidos: \n" + mensagemPedidos + "\nPreço Total da Venda: "
-                + this.valorTotalVenda + "\n-----------------";
+        return "---- Venda ---- \nID: " + this.id + "\nCliente: " + this.cliente.getNome() + "\nPedidos: \n"
+                + mensagemPedidos + "\nPreço Total da Venda: " + this.valorTotalVenda + "\n-----------------";
     }
 }
