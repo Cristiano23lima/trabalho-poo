@@ -43,9 +43,9 @@ public class SorveteriaApplication {
         cli.setTelefone("888888888");
 
         Cliente cli2 = new Cliente();
-        cli2.setId(1);
-        cli2.setNome("Cristiano");
-        cli2.setCpf("60161866000");
+        cli2.setId(2);
+        cli2.setNome("MAtheus");
+        cli2.setCpf("07503374357");
         cli2.setTelefone("88888888");
 
         Produto acai = new Produto();
@@ -84,19 +84,28 @@ public class SorveteriaApplication {
         venda.setPedidos(peds);
         venda.setId(1);
 
-        System.out.println(cli.toString());
-        System.out.println(acai.toString());
-        System.out.println(ped.toString());
-        System.out.println(venda.toString());
-
         try {
             clienteService.cadastrar(cli);
-            clienteService.editar(cli2);
+            System.out.println(cli.toString());
+
+            clienteService.cadastrar(cli2);
+            System.out.println(cli2.toString());
+
+            // clienteService.editar(cli2);
             produtoService.cadastrar(acai);
-            // produtoService.cadastrar(sorvete);
+            System.out.println(acai.toString());
+
+            produtoService.cadastrar(sorvete);
+            System.out.println(sorvete.toString());
+
             pedidoService.cadastrar(ped);
+            System.out.println(ped.toString());
+
             pedidoService.cadastrar(ped2);
+            System.out.println(ped2.toString());
+
             vendaService.cadastrar(venda);
+            System.out.println(venda.toString());
 
             // System.out.println(clienteService.buscar(1).getCpf());
             // System.out.println(produtoService.buscar(1).getNome());
@@ -106,6 +115,5 @@ public class SorveteriaApplication {
         } catch (Exception e) {
             throw new Exception(e);
         }
-
     }
 }
