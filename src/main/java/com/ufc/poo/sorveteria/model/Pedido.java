@@ -132,6 +132,6 @@ public class Pedido extends Cliente {
     @Override
     public String toString() {
         return "---- Pedido ---- \nID: " + this.id + "\nProduto: " + this.produto.getNome() + "\nCliente: " + this.nome
-                + "\nPreço Total: " + this.valorTotal + "\n----------------";
+                + "\nPreço: " + this.valorTotal + "\n----------------";
     }
 }

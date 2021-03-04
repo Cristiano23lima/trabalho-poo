@@ -14,13 +14,23 @@ import javax.management.BadAttributeValueExpException;
  *
  * @author cristiano
  */
-public class Venda {
+public class Venda extends Pedido {
     private Integer id;
     private List<Pedido> pedidos;
     private Cliente cliente;
     private Double valorTotalVenda;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+    @Override
+    public Produto getProduto() {
+        return super.getProduto();
+    }
+
+    @Override
+    public void setProduto(Produto produto) {
+        super.setProduto(produto);
+    }
 
     /**
      * @return the id
@@ -121,5 +131,11 @@ public class Venda {
 
         return valorTotalVenda;
 
+    }
+
+    @Override
+    public String toString() {
+        return "---- Venda ---- \nID: " + this.id + "\nProduto: \n" + this.pedidos + "\nPreço Total: "
+                + this.valorTotalVenda + "\n-----------------";
     }
 }

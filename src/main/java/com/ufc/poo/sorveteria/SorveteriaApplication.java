@@ -72,6 +72,7 @@ public class SorveteriaApplication {
         ped2.setId(3);
         ped2.setProduto(sorvete);
         ped2.setQuantidadeDesejada(100);
+        ped2.setNome(cli.getNome());
         // teste
 
         List<Pedido> peds = new ArrayList<>();
@@ -86,6 +87,7 @@ public class SorveteriaApplication {
         System.out.println(cli.toString());
         System.out.println(acai.toString());
         System.out.println(ped.toString());
+        System.out.println(venda.toString());
 
         try {
             clienteService.cadastrar(cli);
