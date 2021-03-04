@@ -141,11 +141,4 @@ public class Cliente extends Pessoa {
             return (false);
         }
     }
-
-    @Override
-    public String toString() {
-        return "---- Cliente ---- \nID: " + this.id + "\nNome: " + this.nome + "\nTelefone: " + this.telefone
-                + "\nCPF: " + this.cpf + "\n-----------------";
-    }
-
 }
