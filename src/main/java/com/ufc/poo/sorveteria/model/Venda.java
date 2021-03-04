@@ -135,7 +135,13 @@ public class Venda extends Pedido {
 
     @Override
     public String toString() {
-        return "---- Venda ---- \nID: " + this.id + "\nProduto: \n" + this.pedidos + "\nPreço Total: "
+        String mensagemPedidos = "";
+        for (Pedido pedido : this.pedidos){
+            mensagemPedidos += "\tID do Pedido: "+pedido.getId()+"\n\tNome produto: "+pedido.getProduto().getNome() + "\n\tQuantidade Desejada: "+pedido.getQuantidadeDesejada()+"\n\tValor total do Pedido: "+pedido.getValorTotal()+"\n";
+            mensagemPedidos += "\t--------------------------------------------\n";
+        }
+
+        return "---- Venda ---- \nID: " + this.id + "\nCliente: "+ this.cliente.getNome() + "\nPedidos: \n" + mensagemPedidos + "\nPreço Total da Venda: "
                 + this.valorTotalVenda + "\n-----------------";
     }
 }
