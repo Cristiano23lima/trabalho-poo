@@ -20,7 +20,7 @@ import javax.management.BadAttributeValueExpException;
  * @author cristiano Simulando um banco de dados
  */
 public class ClienteRepository {
-    private static List<Cliente> clientes;
+    private static List<Cliente> clientes;//no banco seria tabela clientes
 
     public ClienteRepository() {
         if (clientes == null) {

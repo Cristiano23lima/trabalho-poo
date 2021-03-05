@@ -21,7 +21,7 @@ import javax.management.BadAttributeValueExpException;
  */
 
 public class VendasRepository{
-    private static List<Venda> vendas;
+    private static List<Venda> vendas;//no banco seria tabela vendas
 
     public VendasRepository() {
         if (vendas == null) {

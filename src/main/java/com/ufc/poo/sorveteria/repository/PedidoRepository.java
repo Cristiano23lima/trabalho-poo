@@ -21,7 +21,7 @@ import javax.management.BadAttributeValueExpException;
  */
 
 public class PedidoRepository{
-    private static List<Pedido> pedidos;
+    private static List<Pedido> pedidos;//no banco seria tabela pedidos
 
     public PedidoRepository() {
         if (pedidos == null) {
