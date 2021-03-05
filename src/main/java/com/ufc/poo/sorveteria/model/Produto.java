@@ -135,4 +135,10 @@ public class Produto {
 
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "---- Produto ---- \nID: " + this.id + "\nNome: " + this.nome + "\nPreço: " + this.preco + "\nEstoque: "
+                + this.quantidadeDisponivel + "\n-----------------";
+    }
 }

@@ -21,6 +21,7 @@ public class Pedido {
     private Double valorTotal;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private Object cliente;
 
     /**
      * @return the id
@@ -116,5 +117,11 @@ public class Pedido {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "---- Pedido ---- \nID: " + this.id + "\nProduto: " + this.produto.getNome() + "\nCliente: "
+                + ((Produto) this.cliente).getNome() + "\nPreço: " + this.valorTotal + "\n----------------";
     }
 }
