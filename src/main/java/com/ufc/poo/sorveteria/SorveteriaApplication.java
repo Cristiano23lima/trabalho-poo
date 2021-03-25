@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
+import com.ufc.poo.sorveteria.views.Principal;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,7 +32,9 @@ import com.ufc.poo.sorveteria.exceptions.NotFoundException;
  */
 public class SorveteriaApplication {
     public static void main(String[] args) throws NotFoundException, Exception {
-        ClienteService clienteService = new ClienteServiceImpl();
+        Principal telaPrincipal = new Principal();
+        telaPrincipal.setVisible(true);
+        /*ClienteService clienteService = new ClienteServiceImpl();
         ProdutoService produtoService = new ProdutoServiceImpl();
         PedidoService pedidoService = new PedidoServiceImpl();
         VendaService vendaService = new VendaServiceImpl();
@@ -114,6 +117,6 @@ public class SorveteriaApplication {
 
         } catch (Exception e) {
             throw new Exception(e);
-        }
+        }*/
     }
 }
