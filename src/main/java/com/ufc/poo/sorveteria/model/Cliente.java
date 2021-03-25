@@ -70,6 +70,10 @@ public class Cliente extends Pessoa {
         if (!validarCpf()) {
             throw new BadAttributeValueExpException("Campo CPF vazio ou inválido");
         }
+        
+        if(telefone.isEmpty()){
+            throw new BadAttributeValueExpException("Campo telefone é obrigátorio");
+        }
 
         return true;
     }
