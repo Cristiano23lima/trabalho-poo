@@ -1,5 +1,6 @@
 package com.ufc.poo.sorveteria;
 
+import com.ufc.poo.sorveteria.config.ConexaoMysql;
 import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.model.Pedido;
 import com.ufc.poo.sorveteria.model.Produto;
@@ -32,6 +33,9 @@ import com.ufc.poo.sorveteria.views.Principal;
  */
 public class SorveteriaApplication {
     public static void main(String[] args) throws NotFoundException, Exception {
+        ConexaoMysql conexao = new ConexaoMysql();
+        conexao.openConnection();
+        
         Principal telaPrincipal = new Principal();
         telaPrincipal.setVisible(true);
         /*ClienteService clienteService = new ClienteServiceImpl();
