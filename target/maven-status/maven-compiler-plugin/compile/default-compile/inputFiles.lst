@@ -15,7 +15,6 @@
 /home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/services/VendaService.java
 /home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/services/impl/VendaServiceImpl.java
 /home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/SorveteriaApplication.java
-/home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/repository/filter/ClienteFilter.java
 /home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/repository/VendasRepository.java
 /home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/repository/PedidoRepository.java
 /home/cristiano/NetBeansProjects/trabalho-poo/src/main/java/com/ufc/poo/sorveteria/model/Pedido.java

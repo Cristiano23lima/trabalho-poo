@@ -9,8 +9,6 @@ import com.ufc.poo.sorveteria.model.Cliente;
 import com.ufc.poo.sorveteria.repository.ClienteRepository;
 import com.ufc.poo.sorveteria.services.ClienteService;
 import com.ufc.poo.sorveteria.exceptions.NotFoundException;
-import com.ufc.poo.sorveteria.repository.filter.ClienteFilter;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.management.BadAttributeValueExpException;
@@ -63,11 +61,11 @@ public class ClienteServiceImpl implements ClienteService{
     }
     
     @Override
-    public List<Cliente> buscar(ClienteFilter clienteFilter){
+    public Cliente buscar(Integer id){
         try{
-            return clienteRepository.findByCliente(clienteFilter);
+            return clienteRepository.findById(id);
         }catch(NoSuchElementException e){
-            throw new NoSuchElementException("Nenhum cliente encontrado");
+            throw new NoSuchElementException("Nenhum cliente encontrado com o id '"+id+"'");
         }
     }
         

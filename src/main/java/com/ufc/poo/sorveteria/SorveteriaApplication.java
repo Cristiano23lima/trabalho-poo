@@ -33,14 +33,8 @@ import com.ufc.poo.sorveteria.views.Principal;
  */
 public class SorveteriaApplication {
     public static void main(String[] args) throws NotFoundException, Exception {
-        ClienteService service = new ClienteServiceImpl();
-        Cliente cliente = new Cliente();
-        cliente.setCpf("25751380002");
-        cliente.setNome("Cristiano Rodrigues");
-        cliente.setTelefone("99999999999");
-        
-        service.cadastrar(cliente);
-        
+        ConexaoMysql conexao = new ConexaoMysql();
+        conexao.openConnection();
         
         Principal telaPrincipal = new Principal();
         telaPrincipal.setVisible(true);
