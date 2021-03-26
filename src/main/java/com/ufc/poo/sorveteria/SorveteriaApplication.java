@@ -33,8 +33,8 @@ import com.ufc.poo.sorveteria.views.Principal;
  */
 public class SorveteriaApplication {
     public static void main(String[] args) throws NotFoundException, Exception {
-        ConexaoMysql conexao = new ConexaoMysql();
-        conexao.openConnection();
+        //ConexaoMysql conexao = new ConexaoMysql();
+        //conexao.openConnection();
         
         Principal telaPrincipal = new Principal();
         telaPrincipal.setVisible(true);
