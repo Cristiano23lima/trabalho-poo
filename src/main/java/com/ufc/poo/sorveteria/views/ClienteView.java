@@ -389,7 +389,7 @@ public class ClienteView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Cliente removido com sucesso");
                     
                 }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Não foi possível excluir cliente. Motivo: "+e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Não foi possível excluir cliente. Motivo: "+e);
                 }
              }
          }

@@ -228,7 +228,7 @@ public class AddCliente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
        }catch(Exception e){
            e.printStackTrace();
-           JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o cliente. Motivo: "+e.getMessage());
+           JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o cliente. Motivo: "+e);
        }
     }//GEN-LAST:event_jBtnCadastrarClienteActionPerformed
 

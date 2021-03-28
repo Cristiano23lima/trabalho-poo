@@ -223,7 +223,7 @@ public class EdtCliente extends javax.swing.JFrame {
             new ClienteView().setVisible(true);
             dispose();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Não foi possível editar o cliente. Motivo: "+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Não foi possível editar o cliente. Motivo: "+e);
         }
     }//GEN-LAST:event_jBtnEditarClienteActionPerformed
 
