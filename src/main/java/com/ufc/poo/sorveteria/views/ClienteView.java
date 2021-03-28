@@ -5,11 +5,20 @@
  */
 package com.ufc.poo.sorveteria.views;
 
+import com.ufc.poo.sorveteria.services.ClienteService;
+import com.ufc.poo.sorveteria.services.impl.ClienteServiceImpl;
+import com.ufc.poo.sorveteria.model.Cliente;
+import com.ufc.poo.sorveteria.repository.filter.ClienteFilter;
+
+import java.util.List;
+import java.util.Vector;
+
+
 /**
  *
  * @author mplma
  */
-public class Cliente extends javax.swing.JFrame {
+public class ClienteView extends javax.swing.JFrame {
 
     static void setVisivel(boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -18,8 +27,9 @@ public class Cliente extends javax.swing.JFrame {
     /**
      * Creates new form Cliente
      */
-    public Cliente() {
+    public ClienteView() {
         initComponents();
+        initTable();
     }
 
     /**
@@ -98,6 +108,11 @@ public class Cliente extends javax.swing.JFrame {
 
         jBtnLimparFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBtnLimparFiltro.setText("LIMPAR");
+        jBtnLimparFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLimparFiltroActionPerformed(evt);
+            }
+        });
 
         jBtnFiltrarCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBtnFiltrarCliente.setText("FILTRAR CLIENTE");
@@ -216,8 +231,8 @@ public class Cliente extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnApagarCliente)
                     .addComponent(jBtnEditarCliente))
@@ -282,7 +297,46 @@ public class Cliente extends javax.swing.JFrame {
         telaAddCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBtnCadastroClienteActionPerformed
-
+    
+    private void initTable(){
+        ClienteService service = new ClienteServiceImpl();
+        List<Cliente> clientesEncontrados = service.buscar(null);
+        preencherTable(clientesEncontrados);
+    }
+    
+    private void preencherTable(List<Cliente> clientes){
+        Vector<Vector<Object>> rows = new Vector();
+        
+        //criando as rows da tabela
+        clientes.forEach(cliente -> {
+            Vector<Object> row = new Vector();
+            
+            row.add(cliente.getId());
+            row.add(cliente.getNome());
+            row.add(cliente.getCpf());
+            row.add(cliente.getTelefone());
+            row.add(cliente.getCreatedAt());
+            
+            rows.add(row);
+        });
+        
+        jtbCliente.setModel(new javax.swing.table.DefaultTableModel(
+            rows,
+            columnTable()
+        ));
+    }
+    
+    private Vector<String> columnTable(){
+        Vector<String> column = new Vector();
+        
+        column.add("ID");
+        column.add("Nome");
+        column.add("CPF");
+        column.add("Telefone");
+        column.add("Criado em");
+        return column;
+    }
+    
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
         new Principal().setVisible(true);
         dispose();
@@ -307,8 +361,22 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnApagarClienteActionPerformed
 
     private void jBtnFiltrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFiltrarClienteActionPerformed
-        // TODO add your handling code here:
+       ClienteService service = new ClienteServiceImpl();
+       ClienteFilter filter = new ClienteFilter();
+       filter.setId(jTxtIdCliente.getText().isEmpty() ? null : Integer.valueOf(jTxtIdCliente.getText().replaceAll("\\D", "")));
+       filter.setCpf(jTxtCpfCliente.getText().isEmpty() ? null : jTxtCpfCliente.getText().replaceAll("\\D", ""));
+       filter.setNome(jTxtNomeCliente.getText());
+       
+       List<Cliente> clientesEncontrados = service.buscar(filter);
+       
+       preencherTable(clientesEncontrados);
     }//GEN-LAST:event_jBtnFiltrarClienteActionPerformed
+
+    private void jBtnLimparFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparFiltroActionPerformed
+        jTxtIdCliente.setText("");
+        jTxtCpfCliente.setText("");
+        jTxtNomeCliente.setText("");
+    }//GEN-LAST:event_jBtnLimparFiltroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,20 +395,21 @@ public class Cliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cliente().setVisible(true);
+                new ClienteView().setVisible(true);
             }
         });
     }

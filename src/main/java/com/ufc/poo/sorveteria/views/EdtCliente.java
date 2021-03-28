@@ -211,7 +211,7 @@ public class EdtCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnLimparActionPerformed
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
-        new Cliente().setVisible(true);
+        new ClienteView().setVisible(true);
         dispose();
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 

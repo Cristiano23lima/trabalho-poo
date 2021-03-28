@@ -10,12 +10,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.MaskFormatter;
 
+import com.ufc.poo.sorveteria.model.Cliente;
+import com.ufc.poo.sorveteria.services.ClienteService;
+import com.ufc.poo.sorveteria.services.impl.ClienteServiceImpl;
+import javax.swing.JOptionPane;
 /**
  *
  * @author mplma
  */
 public class AddCliente extends javax.swing.JFrame {
-
     /**
      * Creates new form AddCliente
      */
@@ -208,15 +211,35 @@ public class AddCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtTelefoneCliActionPerformed
 
     private void jBtnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCadastrarClienteActionPerformed
-        // TODO add your handling code here:
+       Cliente clienteCadastrar = new Cliente();
+       clienteCadastrar.setCpf(jTxtCPFCli.getText().replaceAll("\\D", ""));
+       clienteCadastrar.setNome(jTxtNomeCli.getText());
+       clienteCadastrar.setTelefone(jTxtTelefoneCli.getText());
+       
+       System.out.println(clienteCadastrar.toString());
+       
+       ClienteService service = new ClienteServiceImpl();
+       try{
+        service.cadastrar(clienteCadastrar);
+        //LIMPA O FORM
+        jTxtCPFCli.setText("");
+        jTxtNomeCli.setText("");
+        jTxtTelefoneCli.setText("");
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+       }catch(Exception e){
+           e.printStackTrace();
+           JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o cliente. Motivo: "+e.getMessage());
+       }
     }//GEN-LAST:event_jBtnCadastrarClienteActionPerformed
 
     private void jBtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparActionPerformed
-        // TODO add your handling code here:
+        jTxtCPFCli.setText("");
+        jTxtNomeCli.setText("");
+        jTxtTelefoneCli.setText("");
     }//GEN-LAST:event_jBtnLimparActionPerformed
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
-        new Cliente().setVisible(true);
+        new ClienteView().setVisible(true);
         dispose();
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 

@@ -5,6 +5,8 @@
  */
 package com.ufc.poo.sorveteria.views;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mplma
@@ -126,21 +128,21 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClientesActionPerformed
-        Cliente telaCliente = new Cliente();
+        ClienteView telaCliente = new ClienteView();
         telaCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBtnClientesActionPerformed
 
     private void jBtnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnProdutosActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Tela ainda em Desenvolvimento!");
     }//GEN-LAST:event_jBtnProdutosActionPerformed
 
     private void jBtnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPedidosActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Tela ainda em Desenvolvimento!");
     }//GEN-LAST:event_jBtnPedidosActionPerformed
 
     private void jBtnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVendasActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Tela ainda em Desenvolvimento!");
     }//GEN-LAST:event_jBtnVendasActionPerformed
 
     private void jBtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSairActionPerformed
