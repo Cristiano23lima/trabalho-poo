@@ -12,6 +12,8 @@ import com.ufc.poo.sorveteria.repository.filter.ClienteFilter;
 
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -356,21 +358,47 @@ public class ClienteView extends javax.swing.JFrame {
 
     private void jBtnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarClienteActionPerformed
         Integer linhaSelecionada = jtbCliente.getSelectedRow();
-        Cliente clienteSelecionado = new Cliente();
-        clienteSelecionado.setId((Integer) jtbCliente.getValueAt(linhaSelecionada, 0));
-        clienteSelecionado.setNome((String) jtbCliente.getValueAt(linhaSelecionada, 1));
-        clienteSelecionado.setTelefone((String) jtbCliente.getValueAt(linhaSelecionada, 3));
-        clienteSelecionado.setCpf((String) jtbCliente.getValueAt(linhaSelecionada, 2));      
-          
-        EdtCliente telaEdtCliente = new EdtCliente(clienteSelecionado);
-        telaEdtCliente.setVisible(true);
-        dispose();
+        if(linhaSelecionada != null){
+            Cliente clienteSelecionado = new Cliente();
+            clienteSelecionado.setId((Integer) jtbCliente.getValueAt(linhaSelecionada, 0));
+            clienteSelecionado.setNome((String) jtbCliente.getValueAt(linhaSelecionada, 1));
+            clienteSelecionado.setTelefone((String) jtbCliente.getValueAt(linhaSelecionada, 3));
+            clienteSelecionado.setCpf((String) jtbCliente.getValueAt(linhaSelecionada, 2));      
+
+            EdtCliente telaEdtCliente = new EdtCliente(clienteSelecionado);
+            telaEdtCliente.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jBtnEditarClienteActionPerformed
 
     private void jBtnApagarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnApagarClienteActionPerformed
-        // TODO add your handling code here:
+         Integer linhaSelecionada = jtbCliente.getSelectedRow();
+         if(linhaSelecionada != null){
+             Integer idClienteSelecionado = (Integer) jtbCliente.getValueAt(linhaSelecionada, 0);
+             
+             ClienteService service = new ClienteServiceImpl();
+             
+             Integer escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esse cliente?");
+             
+             if(escolha == 0){
+                try{
+                    removeLinha(linhaSelecionada);
+                    
+                    service.remover(idClienteSelecionado);
+                    
+                    JOptionPane.showMessageDialog(null, "Cliente removido com sucesso");
+                    
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Não foi possível excluir cliente. Motivo: "+e.getMessage());
+                }
+             }
+         }
     }//GEN-LAST:event_jBtnApagarClienteActionPerformed
-
+    
+    private void removeLinha(int linhaSelecionada){
+        ((DefaultTableModel) jtbCliente.getModel()).removeRow(linhaSelecionada);
+    }
+        
     private void jBtnFiltrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFiltrarClienteActionPerformed
        ClienteService service = new ClienteServiceImpl();
        ClienteFilter filter = new ClienteFilter();
