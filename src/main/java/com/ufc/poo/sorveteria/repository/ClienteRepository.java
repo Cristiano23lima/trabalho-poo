@@ -57,10 +57,6 @@ public class ClienteRepository {
 
     
     public Cliente findById(Integer id){
-        if(clientes == null || clientes.size() <= 0){
-            return null;   
-        }
-
         try{
             return this.whereSqlById(id);
         }catch(Exception e){

@@ -5,17 +5,25 @@
  */
 package com.ufc.poo.sorveteria.views;
 
+import com.ufc.poo.sorveteria.model.Cliente;
+import com.ufc.poo.sorveteria.services.ClienteService;
+import com.ufc.poo.sorveteria.services.impl.ClienteServiceImpl;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mplma
  */
 public class EdtCliente extends javax.swing.JFrame {
-
+    
+    private final Cliente cliente;
     /**
      * Creates new form EdtCliente
      */
-    public EdtCliente() {
+    public EdtCliente(Cliente cliente) {
+        this.cliente = cliente;
         initComponents();
+        initForm();
     }
 
     /**
@@ -203,18 +211,39 @@ public class EdtCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtTelefoneCliActionPerformed
 
     private void jBtnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarClienteActionPerformed
-        // TODO add your handling code here:
+        ClienteService service = new ClienteServiceImpl();
+        this.cliente.setCpf(jTxtCPFCli.getText() != null && !jTxtCPFCli.getText().isEmpty() ? jTxtCPFCli.getText().replaceAll("\\D", "") : "");
+        this.cliente.setNome(jTxtNomeCli.getText());
+        this.cliente.setTelefone(jTxtTelefoneCli.getText());
+        
+        try{
+            service.editar(this.cliente);
+            JOptionPane.showMessageDialog(null, "Cliente editado com sucesso");
+            
+            new ClienteView().setVisible(true);
+            dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Não foi possível editar o cliente. Motivo: "+e.getMessage());
+        }
     }//GEN-LAST:event_jBtnEditarClienteActionPerformed
 
     private void jBtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparActionPerformed
-        // TODO add your handling code here:
+       jTxtCPFCli.setText("");
+        jTxtNomeCli.setText("");
+        jTxtTelefoneCli.setText("");
     }//GEN-LAST:event_jBtnLimparActionPerformed
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
         new ClienteView().setVisible(true);
         dispose();
     }//GEN-LAST:event_jBtnVoltarActionPerformed
-
+    
+    private void initForm(){
+        jTxtCPFCli.setText(this.cliente.getCpf());
+        jTxtNomeCli.setText(this.cliente.getNome());
+        jTxtTelefoneCli.setText(this.cliente.getTelefone());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -245,7 +274,7 @@ public class EdtCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EdtCliente().setVisible(true);
+                new EdtCliente(new Cliente()).setVisible(true);
             }
         });
     }
